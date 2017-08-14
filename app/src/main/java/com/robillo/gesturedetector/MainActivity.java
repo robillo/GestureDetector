@@ -9,6 +9,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener{
 
     TextView mTextView;
+    GestureDetector mGestureDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,50 +17,66 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         setContentView(R.layout.activity_main);
 
         mTextView = (TextView) findViewById(R.id.text_view);
+        mGestureDetector = new GestureDetector(this, this);
     }
 
     @Override
     public boolean onSingleTapConfirmed(MotionEvent motionEvent) {
-        return false;
+        mTextView.setText("On Single Tap Confirmed");
+        return true;
     }
 
     @Override
     public boolean onDoubleTap(MotionEvent motionEvent) {
-        return false;
+        mTextView.setText("On Double Tap");
+        return true;
     }
 
     @Override
     public boolean onDoubleTapEvent(MotionEvent motionEvent) {
-        return false;
+        mTextView.setText("On Double Tap Event");
+        return true;
     }
 
     @Override
     public boolean onDown(MotionEvent motionEvent) {
-        return false;
+        mTextView.setText("On Down");
+        return true;
     }
 
     @Override
     public void onShowPress(MotionEvent motionEvent) {
-
+        mTextView.setText("On Show Press");
     }
 
     @Override
     public boolean onSingleTapUp(MotionEvent motionEvent) {
-        return false;
+        mTextView.setText("On Single Tap Up");
+        return true;
     }
 
     @Override
     public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
-        return false;
+        mTextView.setText("On Scroll");
+        return true;
     }
 
     @Override
     public void onLongPress(MotionEvent motionEvent) {
-
+        mTextView.setText("On Long Press");
     }
 
     @Override
     public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
-        return false;
+        mTextView.setText("On Fling");
+        return true;
+    }
+
+
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        mGestureDetector.onTouchEvent(event);
+        return super.onTouchEvent(event);
     }
 }
